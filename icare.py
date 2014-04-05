@@ -86,8 +86,6 @@ FILES = []
 Get file list
 """
 
-utils = Utils(db, '', '')
-
 def strRandom():
     char_set = string.ascii_uppercase + string.digits
     return ''.join(random.sample(char_set*24, 24))
@@ -205,6 +203,8 @@ def main():
     """
     #try:
     db = get_connection()
+    utils = Utils(db, '', '')
+
     zip_count = len(glob.glob1(ZIP_DIR, '*'))
 
     if zip_count:
