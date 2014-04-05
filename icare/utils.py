@@ -3,6 +3,7 @@
 import pymongo
 import sys
 import threading
+from datetime import datetime
 
 
 class Utils(threading.Thread):
@@ -28,13 +29,13 @@ class Utils(threading.Thread):
         else:
             return None
 
-    # def log(self, msg=''):
-    #     doc = {
-    #         'msg': msg,
-    #         'last_update': datetime.today().ctime()
-    #     }
-    #
-    #     self.db.logs.insert(doc)
+    def log(self, msg=''):
+        doc = {
+            'msg': msg,
+            'last_update': datetime.today().ctime()
+        }
+
+        self.db.logs.insert(doc)
 
     def run(self):
         if self.t == 'ANC':
@@ -43,16 +44,16 @@ class Utils(threading.Thread):
             self.process_diagnosis_opd()
         elif self.t == 'DIAGNOSIS_IPD':
             self.process_diagnosis_ipd()
-        #elif self.t == 'PROCEDURE_OPD':
-        #    self.process_procedure_opd()
-        #elif self.t == 'PROCEDURE_IPD':
-        #    self.process_procedure_ipd()
+        elif self.t == 'PROCEDURE_OPD':
+            self.process_procedure_opd()
+        elif self.t == 'PROCEDURE_IPD':
+            self.process_procedure_ipd()
         elif self.t == 'SERVICE':
             self.process_service()
-        #elif self.t == 'DRUG_OPD':
-        #    self.process_drug_opd()
-        #elif self.t == 'DRUG_IPD':
-        #    self.process_drug_ipd()
+        elif self.t == 'DRUG_OPD':
+            self.process_drug_opd()
+        elif self.t == 'DRUG_IPD':
+            self.process_drug_ipd()
         elif self.t == 'DEATH':
             self.process_death()
         #elif self.t == 'CARD':
@@ -65,10 +66,10 @@ class Utils(threading.Thread):
             self.process_appointment()
         elif self.t == 'ACCIDENT':
             self.process_accident()
-        #elif self.t == 'CHARGE_IPD':
-        #    self.process_charge_ipd()
-        #elif self.t == 'CHARGE_OPD':
-        #    self.process_charge_opd()
+        elif self.t == 'CHARGE_IPD':
+            self.process_charge_ipd()
+        elif self.t == 'CHARGE_OPD':
+            self.process_charge_opd()
         elif self.t == 'ADMISSION':
             self.process_admission()
         elif self.t == 'SURVEILLANCE':
